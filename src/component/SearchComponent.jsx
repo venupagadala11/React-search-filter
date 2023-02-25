@@ -1,28 +1,21 @@
-import React, { useState } from "react";
+import React, {useState} from 'react';
 
-const  SearchComponent=(proms)=> {
-  const [value, setValue] = useState("");
-
-
-  const onChange = (event) => {
-    setValue(event.target.value);
-        const arr=proms.array.filter((person)=>{
-            if(person.first_name===value)
-                return person;
-        });
-        console.log(arr)
-    
-  };
-
+export default function SearchComponent({handleInputChange,handleSelectedOption}) {
+ 
   return (
-    <>
-    <p>{proms.array[0].first_name}</p>
-      <div>Input value: {value}</div>
-      <input placeholder="Type a value" value={value} onChange={(event)=> setValue(event.target.value)} />
-    </>
-  );
-  
+    <div className="container-search">
+      <div className='search-container'>
+        <div className="search-bar"><label id='search-label' htmlFor="search">Search </label><input placeholder="Type a value" id="search" onChange={handleInputChange } /></div>
+        <div className="dropDown-box">Select Gender
+          <select id="gender" defaultValue="all" onChange={(e)=>handleSelectedOption(e)} >
+            <option value="all">All</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  )
 }
-export default SearchComponent;
 
 
